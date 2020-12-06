@@ -1,0 +1,23 @@
+name: C/C++ CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: dependencies
+      run: sudo apt-get update && sudo apt-get install -yq libts-dev libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev
+    - name: make
+      run: make
+    - uses: actions/upload-artifact@v2
+      with:
+        name: shared-library
+        path: libTouchCP.so
