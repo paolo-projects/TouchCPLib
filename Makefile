@@ -1,6 +1,6 @@
 CC=gcc
 INCLUDE=include
-CFLAGS=-fPIC -Wall -Wextra -O2 -g -I${INCLUDE}
+CFLAGS=-fPIC -Wall -Wextra -O2 -I${INCLUDE}
 LDFLAGS=-shared -lSDL2 -lts -lSDL2_ttf -lSDL2_image
 RM=rm -f
 RMDIR=rmdir
@@ -16,13 +16,11 @@ all: ${TARGET_LIB}
 
 $(TARGET_LIB): $(OBJS)
 	$(CC) ${LDFLAGS} -o $@ $^
-	
+
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CC) $(CFLAGS) -MMD -c -o $@ $<
-	
--include $(OBJS:.o=.d)
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 .PHONY: clean
 clean:
-	-${RM} ${TARGET_LIB} ${OBJS} $(SRCS:.cpp=.d)
+	-${RM} ${TARGET_LIB} ${OBJS}
 	-${RMDIR} ${OBJ_DIR}
