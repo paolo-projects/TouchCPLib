@@ -17,7 +17,9 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -yq libts-dev libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev
     - name: make
       run: make
+    - name: set-name
+      run: echo "machine_name=$(uname -m)" >> $GITHUB_ENV
     - uses: actions/upload-artifact@v2
       with:
-        name: shared-library
-        path: libTouchCP.so
+        name: shared-library-${{env.machine_name}}
+        path: libTouchCP-${{env.machine_name}}.so
