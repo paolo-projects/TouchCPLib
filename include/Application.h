@@ -17,6 +17,7 @@
 #include "TouchEventDispatcher.h"
 #include "IMGException.h"
 #include "TTFFontException.h"
+#include "TouchCPException.h"
 
 class Application
 {
@@ -28,7 +29,7 @@ public:
 	Application operator=(const Application& copy) = delete;
 
 	void setMainScene(GraphicsScene* scene);
-	int run();
+	void run();
 	bool isRunning();
 	SDL_Window* getWindow();
 	SDL_Renderer* getRenderer();
