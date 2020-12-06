@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="GraphicsScene.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="TouchEventDispatcher.cpp" />
+    <ClCompile Include="TouchInput.cpp" />
+    <ClCompile Include="Window.cpp" />
+    <ClCompile Include="MainScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SamplingScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp" />
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="SineWaveAnimation.cpp">
+      <Filter>GraphicObjects\Animated</Filter>
+    </ClCompile>
+    <ClCompile Include="WavefunctionAnimation.cpp">
+      <Filter>GraphicObjects\Animated</Filter>
+    </ClCompile>
+    <ClCompile Include="Button.cpp">
+      <Filter>GraphicObjects\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ImageButton.cpp">
+      <Filter>GraphicObjects\Controls</Filter>
+    </ClCompile>
+    <ClCompile Include="Text.cpp">
+      <Filter>GraphicObjects\Controls</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GraphicsObject.h" />
+    <ClInclude Include="GraphicsScene.h" />
+    <ClInclude Include="SDLException.h" />
+    <ClInclude Include="TouchEnabledObject.h" />
+    <ClInclude Include="TouchEventDispatcher.h" />
+    <ClInclude Include="TouchInput.h" />
+    <ClInclude Include="TouchInputException.h" />
+    <ClInclude Include="TTFFontException.h" />
+    <ClInclude Include="Window.h" />
+    <ClInclude Include="MainScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SamplingScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="SpaceGrid.h" />
+    <ClInclude Include="InteractiveGraphicsObject.h" />
+    <ClInclude Include="SceneManager.h" />
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="IMGException.h" />
+    <ClInclude Include="WavefunctionAnimation.h">
+      <Filter>GraphicObjects\Animated</Filter>
+    </ClInclude>
+    <ClInclude Include="SineWaveAnimation.h">
+      <Filter>GraphicObjects\Animated</Filter>
+    </ClInclude>
+    <ClInclude Include="Button.h">
+      <Filter>GraphicObjects\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ImageButton.h">
+      <Filter>GraphicObjects\Controls</Filter>
+    </ClInclude>
+    <ClInclude Include="Text.h">
+      <Filter>GraphicObjects\Controls</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Scenes">
+      <UniqueIdentifier>{e19110a1-9036-44af-aed0-80b1909b2393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GraphicObjects">
+      <UniqueIdentifier>{4f281d02-6dcf-407a-a244-e3b350948caa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GraphicObjects\Animated">
+      <UniqueIdentifier>{8a9d4e30-4968-457a-adf4-d82e3b98142d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GraphicObjects\Controls">
+      <UniqueIdentifier>{ac05dcd2-db53-4ba5-bc37-b84629a03840}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
