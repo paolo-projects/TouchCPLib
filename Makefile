@@ -4,7 +4,7 @@ CFLAGS=-fPIC -Wall -Wextra -O2 -I${INCLUDE}
 LDFLAGS=-shared -lSDL2 -lts -lSDL2_ttf -lSDL2_image
 RM=rm -f
 RMDIR=rmdir
-TARGET_LIB=libTouchCP.so
+TARGET_LIB=libTouchCP-$(shell uname -m).so
 _dummy := $(shell mkdir -p obj) # Create obj dir
 
 SRC_DIR=src
