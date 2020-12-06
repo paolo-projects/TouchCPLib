@@ -1,7 +1,7 @@
 CC=gcc
 INCLUDE=include
 CFLAGS=-fPIC -Wall -Wextra -O2 -g -I${INCLUDE}
-LDFLAGS=-shared
+LDFLAGS=-shared -lSDL2 -lts -lSDL2_ttf -lSDL2_image
 RM=rm -f
 RMDIR=rmdir
 TARGET_LIB=libTouchCP.so
