@@ -14,7 +14,7 @@ Button::~Button()
 		SDL_FreeSurface(textSurface);
 }
 
-void Button::setText(const std::string& text)
+void Button::setText(const std::string &text)
 {
 	this->text = text;
 	build();
@@ -37,7 +37,7 @@ void Button::setTextColor(const Color textColor)
 	build();
 }
 
-void Button::setFontPath(const std::string& fontPath)
+void Button::setFontPath(const std::string &fontPath)
 {
 	this->fontPath = fontPath;
 	font.reset(new Font(fontPath, fontSize));
@@ -84,7 +84,8 @@ int Button::getHeight() const
 
 void Button::build()
 {
-	if (font != nullptr) {
+	if (font != nullptr)
+	{
 		if (textSurface != nullptr)
 		{
 			SDL_FreeSurface(textSurface);
@@ -98,7 +99,8 @@ void Button::build()
 
 		textSurface = TTF_RenderText_Solid(*font, text.c_str(), textColor);
 
-		if (!textSurface) {
+		if (!textSurface)
+		{
 			throw TTFFontException("Couldn't render text");
 		}
 
@@ -108,6 +110,6 @@ void Button::build()
 
 		int marginVert = (geometry.height - textH) / 2;
 		int marginHor = (geometry.width - textW) / 2;
-		textPosition = { geometry.x + marginHor, geometry.y + marginVert, textW, textH };
+		textPosition = {geometry.x + marginHor, geometry.y + marginVert, textW, textH};
 	}
 }

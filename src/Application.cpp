@@ -11,10 +11,36 @@ Application::Application(int width, int height, SDL_Color bgColor, std::string t
 	}
 	application = this;
 	lastTouchEvent = SDL_GetTicks();
+
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	{
+		throw TouchCPException("Failed while initializing SDL. %s", SDL_GetError());
+	}
+	if (TTF_Init() < 0)
+	{
+		SDL_Quit();
+		throw TouchCPException("Failed while initializing TTL. %s", TTF_GetError());
+	}
+
+	if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF) == 0)
+	{
+		TTF_Quit();
+		SDL_Quit();
+		throw TouchCPException("Failed while initializing SDL IMG Library. %s", TTF_GetError());
+	}
+
+	DisableTTYCursor();
+	SDL_ShowCursor(SDL_DISABLE);
 }
 
 Application::~Application()
 {
+	EnableTTYCursor();
+
+	IMG_Quit();
+	TTF_Quit();
+	SDL_Quit();
+
 	application = nullptr;
 }
 
@@ -72,26 +98,6 @@ void Application::EnableTTYCursor()
 
 void Application::run()
 {
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
-	{
-		throw TouchCPException("Failed while initializing SDL. %s", SDL_GetError());
-	}
-	if (TTF_Init() < 0)
-	{
-		SDL_Quit();
-		throw TouchCPException("Failed while initializing TTL. %s", TTF_GetError());
-	}
-
-	if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF) == 0)
-	{
-		TTF_Quit();
-		SDL_Quit();
-		throw TouchCPException("Failed while initializing SDL IMG Library. %s", TTF_GetError());
-	}
-
-	DisableTTYCursor();
-	SDL_ShowCursor(SDL_DISABLE);
-
 	try
 	{
 		MainLoop();
@@ -99,17 +105,8 @@ void Application::run()
 	catch (const std::exception &exc)
 	{
 		EnableTTYCursor();
-		IMG_Quit();
-		TTF_Quit();
-		SDL_Quit();
 		throw TouchCPException(exc.what());
 	}
-
-	EnableTTYCursor();
-
-	IMG_Quit();
-	TTF_Quit();
-	SDL_Quit();
 }
 
 void Application::MainLoop()
