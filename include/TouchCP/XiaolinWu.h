@@ -6,7 +6,7 @@
 
 class XiaolinWu
 {
-public:
+private:
 	// integer part of x
 	static int ipart(float x)
 	{
@@ -17,13 +17,26 @@ public:
 		return ipart(x + 0.5);
 	}
 	// fractional part of x
-	static float fpart(float x) {
+	static float fpart(float x)
+	{
 		return x - (int)(x);
 	}
 	static int rfpart(int x)
 	{
 		return 1.f - fpart(x);
 	}
+
+public:
+	/**
+	 * @brief Draw a line using the XiaolinWu antialiasing algorithm
+	 * 
+	 * @param x0 X coordinate of the starting point
+	 * @param y0 Y coordinate of the starting point
+	 * @param x1 X coordinate of the end point
+	 * @param y1 Y coordinate of the end point
+	 * @param plot A function that will plot the antialiased points to the screen.
+	 * It will be called with the X coordinate, the Y coordinate, and the brightness that the point has to have (0.0 - 1.0)
+	 */
 	static void drawLine(float x0, float y0, float x1, float y1, std::function<void(int, int, float)> plot)
 	{
 		bool steep = std::abs(y1 - y0) > std::abs(x1 - x0);
@@ -65,7 +78,7 @@ public:
 		}
 		float intery = yend + gradient; // first y-intersection for the main loop
 
-	// handle second endpoint
+		// handle second endpoint
 		xend = round(x1);
 		yend = y1 + gradient * (xend - x1);
 		xgap = fpart(x1 + 0.5);
@@ -103,4 +116,3 @@ public:
 		}
 	}
 };
-

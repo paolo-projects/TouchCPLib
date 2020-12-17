@@ -1,0 +1,11 @@
+<map id="include/TouchCP/Point.h" name="include/TouchCP/Point.h">
+<area shape="rect" id="node2" href="$Rect_8h.html" title="include/TouchCP/Rect.h" alt="" coords="438,80,603,107"/>
+<area shape="rect" id="node9" href="$XYPlot_8h.html" title="include/TouchCP/XYPlot.h" alt="" coords="626,155,805,181"/>
+<area shape="rect" id="node3" href="$Button_8h.html" title="A simple text button. " alt="" coords="5,155,180,181"/>
+<area shape="rect" id="node5" href="$ImageButton_8h.html" title="An ImageButton. " alt="" coords="205,155,415,181"/>
+<area shape="rect" id="node7" href="$Text_8h.html" title="include/TouchCP/Text.h" alt="" coords="439,155,602,181"/>
+<area shape="rect" id="node4" href="$Button_8cpp.html" title="src/Button.cpp" alt="" coords="39,229,146,256"/>
+<area shape="rect" id="node6" href="$ImageButton_8cpp.html" title="src/ImageButton.cpp" alt="" coords="239,229,381,256"/>
+<area shape="rect" id="node8" href="$Text_8cpp.html" title="src/Text.cpp" alt="" coords="473,229,568,256"/>
+<area shape="rect" id="node10" href="$XYPlot_8cpp.html" title="src/XYPlot.cpp" alt="" coords="660,229,771,256"/>
+</map>

@@ -1,4 +1,15 @@
 #pragma once
+
+/**
+ * @file IMGException.h
+ * @author Paolo Infante (info@paoloinfante.it)
+ * @brief 
+ * @version 1.0.0
+ * @date 2020-12-17
+ * 
+ * Copyright (c) 2020 Paolo Infante
+ * 
+ */
 #include <exception>
 #include <string>
 #include <stdarg.h>

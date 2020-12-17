@@ -1,0 +1,8 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title="STL class. " alt="" coords="5,107,109,133"/>
+<area shape="rect" id="node2" href="$classIMGException.html" title="IMGException" alt="" coords="177,5,283,32"/>
+<area shape="rect" id="node3" href="$classSDLException.html" title="SDLException" alt="" coords="177,56,283,83"/>
+<area shape="rect" id="node4" href="$classTouchCPException.html" title="TouchCPException" alt="" coords="163,107,297,133"/>
+<area shape="rect" id="node5" href="$classTouchInputException.html" title="TouchInputException" alt="" coords="157,157,303,184"/>
+<area shape="rect" id="node6" href="$classTTFFontException.html" title="TTFFontException" alt="" coords="165,208,295,235"/>
+</map>

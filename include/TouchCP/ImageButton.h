@@ -1,4 +1,15 @@
 #pragma once
+
+/**
+ * @file ImageButton.h
+ * @author Paolo Infante (info@paoloinfante.it)
+ * @brief An ImageButton
+ * @version 1.0.0
+ * @date 2020-12-17
+ * 
+ * Copyright (c) 2020 Paolo Infante
+ * 
+ */
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 
@@ -11,8 +22,7 @@
 /**
  * @brief A simple image button
 */
-class ImageButton :
-	public InteractiveGraphicsObject
+class ImageButton : public InteractiveGraphicsObject
 {
 public:
 	ImageButton();
@@ -31,7 +41,7 @@ public:
 	 * @brief Set the image file
 	 * @param imgFile The path to the image
 	*/
-	void setImageFile(const std::string& imgFile);
+	void setImageFile(const std::string &imgFile);
 	/**
 	 * @brief Set the image size. The image is automatically centered
 	 * @param width The image width
@@ -43,13 +53,13 @@ public:
 	int getY() const override;
 	int getWidth() const override;
 	int getHeight() const override;
+
 private:
 	void build();
-	SDL_Renderer* renderer = nullptr;
-	Rect geometry = { 0, 0, 0, 0 }, imgPosition;
-	Color fillColor = { 0, 0, 0, 0xFF };
-	SDL_Texture* imgTexture = nullptr;
+	SDL_Renderer *renderer = nullptr;
+	Rect geometry = {0, 0, 0, 0}, imgPosition;
+	Color fillColor = {0, 0, 0, 0xFF};
+	SDL_Texture *imgTexture = nullptr;
 	std::string imageFile;
 	int imgW = -1, imgH = -1;
 };
-

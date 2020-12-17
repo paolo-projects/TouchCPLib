@@ -1,4 +1,14 @@
 #pragma once
+/**
+ * @file Button.h
+ * @author Paolo Infante (info@paoloinfante.it)
+ * @brief A simple text button
+ * @version 1.0.0
+ * @date 2020-12-17
+ * 
+ * Copyright (c) 2020 Paolo Infante
+ * 
+ */
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
@@ -21,7 +31,7 @@ public:
 	 * @brief Sets the button text
 	 * @param text The button text
 	*/
-	void setText(const std::string& text);
+	void setText(const std::string &text);
 	/**
 	 * @brief Sets the button geometry (position and size)
 	 * @param r The button geometry
@@ -41,7 +51,7 @@ public:
 	 * @brief Set the button text font
 	 * @param fontPath The path to the font
 	*/
-	void setFontPath(const std::string& fontPath);
+	void setFontPath(const std::string &fontPath);
 	/**
 	 * @brief Set the button font size
 	 * @param fontSize The font size
@@ -52,18 +62,18 @@ public:
 	int getY() const override;
 	int getWidth() const override;
 	int getHeight() const override;
+
 private:
 	void build();
-	SDL_Renderer* renderer = nullptr;
+	SDL_Renderer *renderer = nullptr;
 	std::string text;
-	Rect geometry = { 0, 0, 0, 0 };
+	Rect geometry = {0, 0, 0, 0};
 	SDL_Rect rectangle, textPosition;
-	Color fillColor = { 0, 0, 0, 0xFF };
-	Color textColor = { 0, 0, 0, 0xFF };
+	Color fillColor = {0, 0, 0, 0xFF};
+	Color textColor = {0, 0, 0, 0xFF};
 	std::string fontPath;
 	int fontSize = 12;
-	SDL_Surface* textSurface = nullptr;
-	SDL_Texture* textTexture = nullptr;
+	SDL_Surface *textSurface = nullptr;
+	SDL_Texture *textTexture = nullptr;
 	std::unique_ptr<Font> font = nullptr;
 };
-

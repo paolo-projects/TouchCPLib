@@ -1,4 +1,15 @@
 #pragma once
+
+/**
+ * @file Text.h
+ * @author Paolo Infante (info@paoloinfante.it)
+ * @brief 
+ * @version 1.0.0
+ * @date 2020-12-17
+ * 
+ * Copyright (c) 2020 Paolo Infante
+ * 
+ */
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 
@@ -11,8 +22,7 @@
 /**
  * @brief A simple text object
 */
-class Text :
-	public InteractiveGraphicsObject
+class Text : public InteractiveGraphicsObject
 {
 public:
 	Text();
@@ -21,7 +31,7 @@ public:
 	 * @brief Set the text message
 	 * @param text The text to display
 	*/
-	void setText(const char* text);
+	void setText(const char *text);
 	/**
 	 * @brief Set the text geometry (position and size). If width and height are set to -1 the text natural size will be used
 	 * @param geom The text geometry
@@ -36,7 +46,7 @@ public:
 	 * @brief Set the text font
 	 * @param fontPath The path to the font
 	*/
-	void setFontPath(const std::string& fontPath);
+	void setFontPath(const std::string &fontPath);
 	/**
 	 * @brief Set the font size
 	 * @param fontSize The font size
@@ -47,17 +57,17 @@ public:
 	int getY() const override;
 	int getWidth() const override;
 	int getHeight() const override;
+
 private:
 	void build();
 	std::string text;
-	SDL_Renderer* renderer;
+	SDL_Renderer *renderer;
 	Rect geometry;
 	Color textColor;
 	std::unique_ptr<Font> font;
 	Rect textPosition;
-	SDL_Surface* textSurface = nullptr;
-	SDL_Texture* textTexture = nullptr;
+	SDL_Surface *textSurface = nullptr;
+	SDL_Texture *textTexture = nullptr;
 	std::string fontPath;
 	int fontSize = 12;
 };
-

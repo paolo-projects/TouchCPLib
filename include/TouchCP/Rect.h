@@ -1,4 +1,15 @@
 #pragma once
+
+/**
+ * @file Rect.h
+ * @author Paolo Infante (info@paoloinfante.it)
+ * @brief 
+ * @version 1.0.0
+ * @date 2020-12-17
+ * 
+ * Copyright (c) 2020 Paolo Infante
+ * 
+ */
 #include <SDL2/SDL.h>
 #include <algorithm>
 #include "Point.h"
@@ -16,14 +27,12 @@ struct Rect
 			xMin,
 			yMin,
 			std::abs(p1.x - p2.x),
-			std::abs(p1.y - p2.y)
-		};
+			std::abs(p1.y - p2.y)};
 	}
 
-	operator SDL_Rect () const
+	operator SDL_Rect() const
 	{
 		return SDL_Rect{
-			x, y, width, height
-		};
+			x, y, width, height};
 	}
 };

@@ -1,12 +1,25 @@
 #pragma once
+
+/**
+ * @file SDLException.h
+ * @author Paolo Infante (info@paoloinfante.it)
+ * @brief 
+ * @version 1.0.0
+ * @date 2020-12-17
+ * 
+ * Copyright (c) 2020 Paolo Infante
+ * 
+ */
 #include <exception>
 #include <string>
 #include <stdarg.h>
 
-class SDLException : public std::exception {
+class SDLException : public std::exception
+{
 public:
-    SDLException(const std::string& message) : msg(message) {};
-    SDLException(const char* message, ...) {
+    SDLException(const std::string &message) : msg(message){};
+    SDLException(const char *message, ...)
+    {
         char msg_buf[300];
         va_list args;
         va_start(args, message);
@@ -14,9 +27,11 @@ public:
         va_end(args);
         msg = std::string(msg_buf);
     };
-    const char* what() const noexcept override {
+    const char *what() const noexcept override
+    {
         return msg.c_str();
     }
+
 private:
     std::string msg;
 };

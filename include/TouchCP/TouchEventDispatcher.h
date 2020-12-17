@@ -1,4 +1,15 @@
 #pragma once
+
+/**
+ * @file TouchEventDispatcher.h
+ * @author Paolo Infante (info@paoloinfante.it)
+ * @brief 
+ * @version 1.0.0
+ * @date 2020-12-17
+ * 
+ * Copyright (c) 2020 Paolo Infante
+ * 
+ */
 #include <vector>
 #include <algorithm>
 
@@ -13,9 +24,9 @@
 class TouchEventDispatcher
 {
 public:
-	TouchEventDispatcher(SceneManager& sceneManager);
+	TouchEventDispatcher(SceneManager &sceneManager);
 	void dispatchTouchEvent(int x, int y);
-private:
-	SceneManager& sceneManager;
-};
 
+private:
+	SceneManager &sceneManager;
+};

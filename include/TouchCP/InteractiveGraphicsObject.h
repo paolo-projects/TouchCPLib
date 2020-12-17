@@ -1,4 +1,15 @@
 #pragma once
+
+/**
+ * @file InteractiveGraphicsObject.h
+ * @author Paolo Infante (info@paoloinfante.it)
+ * @brief 
+ * @version 1.0.0
+ * @date 2020-12-17
+ * 
+ * Copyright (c) 2020 Paolo Infante
+ * 
+ */
 #include "GraphicsObject.h"
 #include "TouchEnabledObject.h"
 
@@ -11,4 +22,3 @@ class InteractiveGraphicsObject : public GraphicsObject, public TouchEnabledObje
 public:
 	virtual ~InteractiveGraphicsObject() = default;
 };
-

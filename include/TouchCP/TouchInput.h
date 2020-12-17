@@ -1,4 +1,15 @@
 #pragma once
+
+/**
+ * @file TouchInput.h
+ * @author Paolo Infante (info@paoloinfante.it)
+ * @brief 
+ * @version 1.0.0
+ * @date 2020-12-17
+ * 
+ * Copyright (c) 2020 Paolo Infante
+ * 
+ */
 #include <string>
 #include <tslib.h>
 #include <vector>
@@ -23,19 +34,19 @@ public:
 	 * @param samples The samples to read (how many sqeuential touch events to read)
 	 * @param slots The touch slots (how many touch points to read, depends on the touch device)
 	*/
-	TouchInput(const std::string& device_name, TouchEventCallback callback, int samples, int slots);
+	TouchInput(const std::string &device_name, TouchEventCallback callback, int samples, int slots);
 	~TouchInput();
 	void setTouchEventCallback(TouchEventCallback callback);
 	void poll();
+
 private:
 	std::string device_name;
-	struct tsdev* ts;
-	ts_sample_mt** samp_mt;
+	struct tsdev *ts;
+	ts_sample_mt **samp_mt;
 	int samples, slots, ret;
 	TouchEventCallback event_callback;
 
-	const char* TSLIB_CALIBFILE = "/etc/pointercal.tslib";
-	const char* TSLIB_CONFFILE = "/etc/ts.conf";
-	const char* TSLIB_TSDEVICE = "/dev/input/event0";
+	const char *TSLIB_CALIBFILE = "/etc/pointercal.tslib";
+	const char *TSLIB_CONFFILE = "/etc/ts.conf";
+	const char *TSLIB_TSDEVICE = "/dev/input/event0";
 };
-

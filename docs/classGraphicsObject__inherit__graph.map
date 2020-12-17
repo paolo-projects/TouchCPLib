@@ -1,0 +1,10 @@
+<map id="GraphicsObject" name="GraphicsObject">
+<area shape="rect" id="node2" href="$classGraphicsScene.html" title="The Scene object is a base class to construct a Scene upon. The scene is basically a view that can be..." alt="" coords="117,80,228,107"/>
+<area shape="rect" id="node3" href="$classInteractiveGraphicsObject.html" title="An abstract class implementing both the GraphicsObject and the TouchEnabledObject, which gives an interactive graphic object as result. " alt="" coords="253,80,426,107"/>
+<area shape="rect" id="node4" href="$classButton.html" title="A simple text button. " alt="" coords="5,155,65,181"/>
+<area shape="rect" id="node5" href="$classImageButton.html" title="A simple image button. " alt="" coords="90,155,186,181"/>
+<area shape="rect" id="node6" href="$classSineWaveAnimation.html" title="SineWaveAnimation" alt="" coords="211,155,351,181"/>
+<area shape="rect" id="node7" href="$classText.html" title="A simple text object. " alt="" coords="375,155,423,181"/>
+<area shape="rect" id="node8" href="$classWavefunctionAnimation.html" title="WavefunctionAnimation" alt="" coords="447,155,607,181"/>
+<area shape="rect" id="node9" href="$classXYPlot.html" title="A chart displaying X,Y points, scaled to the object geomtry. " alt="" coords="632,155,695,181"/>
+</map>

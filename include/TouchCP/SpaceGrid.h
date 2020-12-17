@@ -1,29 +1,48 @@
 #pragma once
 
-class SpaceGrid5x3 {
+/**
+ * @file SpaceGrid.h
+ * @author Paolo Infante (info@paoloinfante.it)
+ * @brief 
+ * @version 1.0.0
+ * @date 2020-12-17
+ * 
+ * Copyright (c) 2020 Paolo Infante
+ * 
+ */
+
+class SpaceGrid5x3
+{
 public:
-	SpaceGrid5x3(int col, int row) {
+	SpaceGrid5x3(int col, int row)
+	{
 		x = H_LAT_PADD + (col) * (WIDTH + H_INT_PADD);
 		y = V_LAT_PADD + (row) * (HEIGHT + V_INT_PADD);
 	}
-	SpaceGrid5x3(int col, int row, int spanH, int spanV) {
+	SpaceGrid5x3(int col, int row, int spanH, int spanV)
+	{
 		x = H_LAT_PADD + (col) * (WIDTH + H_INT_PADD);
 		y = V_LAT_PADD + (row) * (HEIGHT + V_INT_PADD);
 		width += (spanH - 1) * (WIDTH + H_INT_PADD);
 		height += (spanV - 1) * (HEIGHT + V_INT_PADD);
 	}
-	int getX() const {
+	int getX() const
+	{
 		return x;
 	}
-	int getY() const {
+	int getY() const
+	{
 		return y;
 	}
-	int getWidth() const {
+	int getWidth() const
+	{
 		return width;
 	}
-	int getHeight() const {
+	int getHeight() const
+	{
 		return height;
 	}
+
 private:
 	static constexpr int H_LAT_PADD = 40, H_INT_PADD = 25, V_LAT_PADD = 40, V_INT_PADD = 30;
 	static constexpr int WIDTH = 60, HEIGHT = 60;

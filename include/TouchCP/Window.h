@@ -1,4 +1,15 @@
 #pragma once
+
+/**
+ * @file Window.h
+ * @author Paolo Infante (info@paoloinfante.it)
+ * @brief 
+ * @version 1.0.0
+ * @date 2020-12-17
+ * 
+ * Copyright (c) 2020 Paolo Infante
+ * 
+ */
 #include <SDL2/SDL.h>
 #include <exception>
 #include <string>
@@ -22,22 +33,22 @@ public:
      * @brief Get the native SDL window object
      * @return The native SDL window
     */
-    SDL_Window* getWindowObject() const;
+    SDL_Window *getWindowObject() const;
     /**
      * @brief Get the native SDL surface
      * @return The native SDL surface
     */
-    SDL_Surface* getSurface() const;
+    SDL_Surface *getSurface() const;
     /**
      * @brief Get the native SDL renderer
      * @return The SDL renderer
     */
-    SDL_Renderer* getRenderer() const;
+    SDL_Renderer *getRenderer() const;
     void update();
+
 private:
-    SDL_Window* window = nullptr;
-    SDL_Surface* screenSurf = nullptr;
-    SDL_Renderer* renderer = nullptr;
+    SDL_Window *window = nullptr;
+    SDL_Surface *screenSurf = nullptr;
+    SDL_Renderer *renderer = nullptr;
     int WIDTH, HEIGHT;
 };
-

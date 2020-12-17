@@ -1,0 +1,10 @@
+<map id="InteractiveGraphicsObject" name="InteractiveGraphicsObject">
+<area shape="rect" id="node4" href="$classButton.html" title="A simple text button. " alt="" coords="5,155,65,181"/>
+<area shape="rect" id="node5" href="$classImageButton.html" title="A simple image button. " alt="" coords="90,155,186,181"/>
+<area shape="rect" id="node6" href="$classSineWaveAnimation.html" title="SineWaveAnimation" alt="" coords="211,155,351,181"/>
+<area shape="rect" id="node7" href="$classText.html" title="A simple text object. " alt="" coords="375,155,423,181"/>
+<area shape="rect" id="node8" href="$classWavefunctionAnimation.html" title="WavefunctionAnimation" alt="" coords="447,155,607,181"/>
+<area shape="rect" id="node9" href="$classXYPlot.html" title="A chart displaying X,Y points, scaled to the object geomtry. " alt="" coords="632,155,695,181"/>
+<area shape="rect" id="node2" href="$classGraphicsObject.html" title="A simple interface for all the graphic objects that are supposed to be drawn. " alt="" coords="209,5,321,32"/>
+<area shape="rect" id="node3" href="$classTouchEnabledObject.html" title="A base class that provides the methods needed for the object to react to touch input. " alt="" coords="344,5,487,32"/>
+</map>

@@ -1,4 +1,13 @@
 #pragma once
+/**
+ * @file Application.h
+ * @author Paolo Infante
+ * @brief The main application class header
+ * @date 2020-12-17
+ * 
+ * @copyright Copyright (c) 2020 Paolo Infante
+ * 
+ */
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_image.h>

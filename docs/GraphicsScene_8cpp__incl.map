@@ -1,0 +1,19 @@
+<map id="src/GraphicsScene.cpp" name="src/GraphicsScene.cpp">
+<area shape="rect" id="node2" href="$GraphicsScene_8h.html" title="The GraphicsScene base class. " alt="" coords="402,304,583,331"/>
+<area shape="rect" id="node8" href="$Application_8h.html" title="The main application class header. " alt="" coords="920,80,1076,107"/>
+<area shape="rect" id="node6" href="$GraphicsObject_8h.html" title="The GraphicsObject base class. " alt="" coords="790,379,913,405"/>
+<area shape="rect" id="node20" href="$Window_8h.html" title="Window.h" alt="" coords="2002,155,2082,181"/>
+<area shape="rect" id="node24" href="$SceneManager_8h.html" title="SceneManager.h" alt="" coords="534,229,654,256"/>
+<area shape="rect" id="node26" href="$TouchInput_8h.html" title="TouchInput.h" alt="" coords="1157,155,1255,181"/>
+<area shape="rect" id="node29" href="$TouchEventDispatcher_8h.html" title="TouchEventDispatcher.h" alt="" coords="915,155,1081,181"/>
+<area shape="rect" id="node32" href="$IMGException_8h.html" title="IMGException.h" alt="" coords="1843,229,1959,256"/>
+<area shape="rect" id="node33" href="$TTFFontException_8h.html" title="TTFFontException.h" alt="" coords="1506,229,1647,256"/>
+<area shape="rect" id="node34" href="$TouchCPException_8h.html" title="TouchCPException.h" alt="" coords="1671,229,1818,256"/>
+<area shape="rect" id="node35" href="$WorkerThread_8h.html" title="WorkerThread.h" alt="" coords="2543,155,2658,181"/>
+<area shape="rect" id="node41" href="$MainThreadTaskRunner_8h.html" title="MainThreadTaskRunner.h" alt="" coords="2347,155,2519,181"/>
+<area shape="rect" id="node22" href="$SDLException_8h.html" title="SDLException.h" alt="" coords="1983,229,2101,256"/>
+<area shape="rect" id="node28" href="$TouchInputException_8h.html" title="TouchInputException.h" alt="" coords="1325,229,1481,256"/>
+<area shape="rect" id="node30" href="$InteractiveGraphicsObject_8h.html" title="InteractiveGraphicsObject.h" alt="" coords="831,229,1015,256"/>
+<area shape="rect" id="node31" href="$TouchEnabledObject_8h.html" title="TouchEnabledObject.h" alt="" coords="882,304,1037,331"/>
+<area shape="rect" id="node40" href="$Task_8h.html" title="Task.h" alt="" coords="2428,229,2491,256"/>
+</map>

@@ -1,5 +1,15 @@
 #pragma once
-#pragma once
+
+/**
+ * @file WavefunctionAnimation.h
+ * @author Paolo Infante (info@paoloinfante.it)
+ * @brief 
+ * @version 1.0.0
+ * @date 2020-12-17
+ * 
+ * Copyright (c) 2020 Paolo Infante
+ * 
+ */
 #include <SDL2/SDL.h>
 #include <vector>
 #include <array>
@@ -19,6 +29,7 @@ public:
 	int getWidth() const;
 	int getHeight() const;
 	void rebuild();
+
 private:
 	int REVOLUTION_TIME = 2000;
 	int X = 0, Y = 270, WIDTH = 480, HEIGHT = 40, FRAMES = REVOLUTION_TIME / 80;
@@ -29,6 +40,5 @@ private:
 	int ADDITIONAL_PIXELS = 4 * DIVISION;
 	int sinF(double x);
 	std::vector<std::vector<SDL_Point>> points;
-	SDL_Renderer* renderer;
+	SDL_Renderer *renderer;
 };
-

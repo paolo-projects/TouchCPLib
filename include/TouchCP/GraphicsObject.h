@@ -1,4 +1,14 @@
 #pragma once
+/**
+ * @file GraphicsObject.h
+ * @author Paolo Infante (info@paoloinfante.it)
+ * @brief The GraphicsObject base class
+ * @version 1.0.0
+ * @date 2020-12-17
+ * 
+ * Copyright (c) 2020 Paolo Infante
+ * 
+ */
 #include <stdint.h>
 
 /**

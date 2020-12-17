@@ -1,0 +1,5 @@
+<map id="XYPlot" name="XYPlot">
+<area shape="rect" id="node2" href="$classInteractiveGraphicsObject.html" title="An abstract class implementing both the GraphicsObject and the TouchEnabledObject, which gives an interactive graphic object as result. " alt="" coords="49,80,223,107"/>
+<area shape="rect" id="node3" href="$classGraphicsObject.html" title="A simple interface for all the graphic objects that are supposed to be drawn. " alt="" coords="5,5,117,32"/>
+<area shape="rect" id="node4" href="$classTouchEnabledObject.html" title="A base class that provides the methods needed for the object to react to touch input. " alt="" coords="141,5,283,32"/>
+</map>

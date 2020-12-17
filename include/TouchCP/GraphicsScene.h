@@ -1,4 +1,15 @@
 #pragma once
+
+/**
+ * @file GraphicsScene.h
+ * @author Paolo Infante (info@paoloinfante.it)
+ * @brief The GraphicsScene base class
+ * @version 1.0.0
+ * @date 2020-12-17
+ * 
+ * Copyright (c) 2020 Paolo Infante
+ * 
+ */
 #include <vector>
 #include <algorithm>
 #include <random>

@@ -1,0 +1,11 @@
+<map id="include/TouchCP/Color.h" name="include/TouchCP/Color.h">
+<area shape="rect" id="node2" href="$Button_8h.html" title="A simple text button. " alt="" coords="5,80,180,107"/>
+<area shape="rect" id="node4" href="$ImageButton_8h.html" title="An ImageButton. " alt="" coords="205,80,415,107"/>
+<area shape="rect" id="node6" href="$Text_8h.html" title="include/TouchCP/Text.h" alt="" coords="439,80,602,107"/>
+<area shape="rect" id="node8" href="$XiaolinWu_8h.html" title="include/TouchCP/XiaolinWu.h" alt="" coords="627,80,823,107"/>
+<area shape="rect" id="node9" href="$XYPlot_8h.html" title="include/TouchCP/XYPlot.h" alt="" coords="847,80,1026,107"/>
+<area shape="rect" id="node3" href="$Button_8cpp.html" title="src/Button.cpp" alt="" coords="39,155,146,181"/>
+<area shape="rect" id="node5" href="$ImageButton_8cpp.html" title="src/ImageButton.cpp" alt="" coords="239,155,381,181"/>
+<area shape="rect" id="node7" href="$Text_8cpp.html" title="src/Text.cpp" alt="" coords="473,155,568,181"/>
+<area shape="rect" id="node10" href="$XYPlot_8cpp.html" title="src/XYPlot.cpp" alt="" coords="881,155,992,181"/>
+</map>
