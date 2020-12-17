@@ -19,3 +19,26 @@ mainScene.show();
 
 app.run();
 ```
+
+# Compiling
+
+The library is meant to be compiled with CMake, although it also includes a Makefile.
+
+To compile the application you need the following libraries:
+
+- libsdl2
+- libsdl2-ttf
+- libsdl2-image
+- libts
+
+Install them, then:
+
+bash```
+mkdir build
+cd build
+cmake ..
+make
+sudo make install
+```
+
+The library will be installed in `/usr/local` path.
