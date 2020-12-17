@@ -1,4 +1,4 @@
-#include "XYPlot.h"
+#include "TouchCP/XYPlot.h"
 
 XYPlot::XYPlot()
 {

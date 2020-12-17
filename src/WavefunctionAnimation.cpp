@@ -1,4 +1,4 @@
-#include "WavefunctionAnimation.h"
+#include "TouchCP/WavefunctionAnimation.h"
 
 WavefunctionAnimation::WavefunctionAnimation()
 	: renderer(Application::getCurrent()->getRenderer())

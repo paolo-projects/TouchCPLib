@@ -1,4 +1,4 @@
-#include "TouchEventDispatcher.h"
+#include "TouchCP/TouchEventDispatcher.h"
 
 TouchEventDispatcher::TouchEventDispatcher(SceneManager& sceneManager)
 	: sceneManager(sceneManager)

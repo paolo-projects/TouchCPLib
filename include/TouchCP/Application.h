@@ -34,7 +34,7 @@ public:
 	 * @param height The window height
 	 * @param bgColor The background color
 	 * @param touchInputDevice The path to the touch device (e.g. /dev/input/event0)
-	 * @param ttyDevice The path to the UART device (e.g. /dev/ttyS0)
+	 * @param ttyDevice The path to the console UART device bound to the screen (e.g. /dev/tty0) to disable the blinking cursor
 	 * @param FPS_LIMIT The framerate limit, to avoid stressing the CPU for low Hz displays
 	*/
 	Application(int width, int height, SDL_Color bgColor, std::string touchInputDevice, std::string ttyDevice, int FPS_LIMIT);

@@ -1,4 +1,4 @@
-#include "TouchInput.h"
+#include "TouchCP/TouchInput.h"
 
 TouchInput::TouchInput(const std::string &device_name, TouchEventCallback callback, int samples, int slots) : device_name(device_name), samples(samples), slots(slots), event_callback(callback)
 {

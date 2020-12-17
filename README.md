@@ -13,8 +13,9 @@ After this, you instanciate your scene, that will automatically register itself 
 
 ```c++
 Application app(...);
-app.run();
 
 MainScene mainScene;
 mainScene.show();
+
+app.run();
 ```

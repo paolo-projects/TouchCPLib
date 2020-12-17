@@ -1,5 +1,5 @@
-#include "GraphicsScene.h"
-#include "Application.h"
+#include "TouchCP/GraphicsScene.h"
+#include "TouchCP/Application.h"
 
 GraphicsScene::GraphicsScene()
 {

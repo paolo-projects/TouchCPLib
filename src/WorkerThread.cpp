@@ -1,4 +1,4 @@
-#include "WorkerThread.h"
+#include "TouchCP/WorkerThread.h"
 
 WorkerThread::WorkerThread()
 {

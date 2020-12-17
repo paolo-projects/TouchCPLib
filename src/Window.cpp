@@ -1,4 +1,4 @@
-#include "Window.h"
+#include "TouchCP/Window.h"
 
 Window::Window(int width, int height, SDL_Color color) :
 	WIDTH(width), HEIGHT(height) {

@@ -1,4 +1,4 @@
-#include "SineWaveAnimation.h"
+#include "TouchCP/SineWaveAnimation.h"
 
 SineWaveAnimation::SineWaveAnimation()
 	: renderer(Application::getCurrent()->getRenderer())

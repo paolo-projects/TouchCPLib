@@ -1,4 +1,4 @@
-#include "Text.h"
+#include "TouchCP/Text.h"
 
 Text::Text()
 {

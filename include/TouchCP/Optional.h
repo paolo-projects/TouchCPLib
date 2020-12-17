@@ -19,13 +19,13 @@ public:
 	 * 
 	 * @param value The value that will be copied
 	 */
-	Optional(const T &value) { innerValue = std::make_unique<T>(value); } // copy
+	Optional(const T &value) { innerValue = std::unique_ptr<T>(new T(value)); } // copy
 	/**
 	 * @brief Construct an Optional object initialized with the given value
 	 * 
 	 * @param value The value that will be moved
 	 */
-	Optional(T &&value) { innerValue = std::make_unique<T>(std::move(value)); } // move
+	Optional(T &&value) { innerValue = std::unique_ptr<T>(new T(std::move(value))); } // move
 	/**
 	 * @brief Returns true if the optional object has a value
 	 * 
@@ -65,13 +65,13 @@ public:
 	 * 
 	 * @param value The object to be copied
 	 */
-	void set(const T &value) { innerValue.reset(std::make_unique<T>(value)); }
+	void set(const T &value) { innerValue.reset(new T(value)); }
 	/**
 	 * @brief Replace the inner object
 	 * 
 	 * @param value The object to be moved
 	 */
-	void set(T &&value) { innerValue.reset(std::make_unique<T>(value)); }
+	void set(T &&value) { innerValue.reset(new T(value)); }
 	/**
 	 * @brief Assignment operator with copy semantics
 	 * 

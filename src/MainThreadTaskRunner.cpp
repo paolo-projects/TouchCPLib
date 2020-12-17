@@ -1,4 +1,4 @@
-#include "MainThreadTaskRunner.h"
+#include "TouchCP/MainThreadTaskRunner.h"
 
 MainThreadTaskRunner::MainThreadTaskRunner()
 {
@@ -11,13 +11,13 @@ MainThreadTaskRunner::~MainThreadTaskRunner()
 	// to avoid referencing to a deleted object
 	while (taskDeque.size() > 0)
 	{
-		Task* task = taskDeque.back();
+		Task *task = taskDeque.back();
 		delete task;
 		taskDeque.pop_back();
 	}
 }
 
-void MainThreadTaskRunner::addTask(Task* task)
+void MainThreadTaskRunner::addTask(Task *task)
 {
 	std::lock_guard<std::mutex> lock(taskDequeMutex);
 	taskDeque.push_front(task);
@@ -30,7 +30,7 @@ void MainThreadTaskRunner::runTasks()
 	// Run the pending tasks
 	while (taskDeque.size() > 0)
 	{
-		Task* task = taskDeque.back();
+		Task *task = taskDeque.back();
 		(*task)();
 		delete task;
 		taskDeque.pop_back();
