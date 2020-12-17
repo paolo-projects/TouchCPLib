@@ -10,9 +10,19 @@
 
 using TouchEventCallback = std::function<void(ts_sample_mt)>; // void(*)(ts_sample_mt);
 
+/**
+ * @brief Object that gathers the touch events from the underlying device
+*/
 class TouchInput
 {
 public:
+	/**
+	 * @brief Creates an instance of TouchInput
+	 * @param device_name The touch device path
+	 * @param callback The callback for a touch event
+	 * @param samples The samples to read (how many sqeuential touch events to read)
+	 * @param slots The touch slots (how many touch points to read, depends on the touch device)
+	*/
 	TouchInput(const std::string& device_name, TouchEventCallback callback, int samples, int slots);
 	~TouchInput();
 	void setTouchEventCallback(TouchEventCallback callback);

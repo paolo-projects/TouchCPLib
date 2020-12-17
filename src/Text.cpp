@@ -1,68 +1,110 @@
 #include "Text.h"
 
-Text::Text(const char* text, int x, int y, int width, int height, SDL_Color textColor, TTF_Font* font)
-	: renderer(Application::getCurrent()->getRenderer()), x(x), y(y), width(width), height(height), textColor(textColor), font(font)
+Text::Text()
 {
-	rectangle = { x, y, width, height };
-
-	textSurface = TTF_RenderText_Solid(font, text, textColor);
-
-	if (!textSurface) {
-		throw TTFFontException("Couldn't render text");
-	}
-
-	textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-
-	textPosition = { x, y, width, height };
+	renderer = Application::getCurrent()->getRenderer();
 }
 
 Text::~Text()
 {
-	SDL_DestroyTexture(textTexture);
-	SDL_FreeSurface(textSurface);
+	if (textTexture != nullptr)
+		SDL_DestroyTexture(textTexture);
+
+	if (textSurface != nullptr)
+		SDL_FreeSurface(textSurface);
 }
 
 void Text::setText(const char* text)
 {
-	SDL_FreeSurface(textSurface);
-	textSurface = nullptr;
+	this->text = text;
+	build();
+}
 
-	textSurface = TTF_RenderText_Solid(font, text, textColor);
+void Text::setGeometry(Rect geom)
+{
+	geometry = geom;
+	build();
+}
 
-	if (!textSurface) {
-		throw TTFFontException("Couldn't render text");
-	}
+void Text::setColor(Color c)
+{
+	textColor = c;
+	build();
+}
 
-	SDL_DestroyTexture(textTexture);
-	textTexture = nullptr;
+void Text::setFontPath(const std::string& fontPath)
+{
+	this->fontPath = fontPath;
+	font.reset(new Font(fontPath, fontSize));
+	build();
+}
 
-	textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-
-	textPosition = { x, y, width, height };
+void Text::setFontSize(int fontSize)
+{
+	this->fontSize = fontSize;
+	font.reset(new Font(fontPath, fontSize));
+	build();
 }
 
 void Text::draw(uint32_t time)
 {
-	SDL_RenderCopy(renderer, textTexture, NULL, &textPosition);
+	if (textTexture != nullptr)
+	{
+		SDL_Rect sdlTextPos = geometry;
+		SDL_RenderCopy(renderer, textTexture, NULL, &sdlTextPos);
+	}
 }
 
 
 int Text::getX() const
 {
-	return x;
+	return geometry.x;
 }
 
 int Text::getY() const
 {
-	return y;
+	return geometry.y;
 }
 
 int Text::getWidth() const
 {
-	return width;
+	return geometry.width;
 }
 
 int Text::getHeight() const
 {
-	return height;
+	return geometry.height;
+}
+
+void Text::build()
+{
+	if (font != nullptr) {
+		if (textSurface != nullptr)
+		{
+			SDL_FreeSurface(textSurface);
+			textSurface = nullptr;
+		}
+
+		if (textTexture != nullptr)
+		{
+			SDL_DestroyTexture(textTexture);
+			textTexture = nullptr;
+		}
+
+		if (text.size() > 0)
+		{
+			textSurface = TTF_RenderText_Solid(*font, text.c_str(), textColor);
+
+			if (!textSurface) {
+				throw TTFFontException("Couldn't render text");
+			}
+
+			textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+
+			if (geometry.width == -1 || geometry.height == -1)
+			{
+				SDL_QueryTexture(textTexture, NULL, NULL, &geometry.width, &geometry.height);
+			}
+		}
+	}
 }

@@ -1,11 +1,12 @@
 #include "Application.h"
 
-Application* Application::application = nullptr;
+Application *Application::application = nullptr;
 
-Application::Application(GraphicsScene* mainScene, int width, int height, SDL_Color bgColor, std::string touchInputDevice, std::string ttyDevice)
-	: mainScene(mainScene), width(width), height(height), bgColor(bgColor), touchInputDevice(touchInputDevice), ttyDevice(ttyDevice)
+Application::Application(int width, int height, SDL_Color bgColor, std::string touchInputDevice, std::string ttyDevice, int FPS_LIMIT)
+	: width(width), height(height), bgColor(bgColor), touchInputDevice(touchInputDevice), ttyDevice(ttyDevice), FPS(FPS_LIMIT)
 {
-	if (application != nullptr) {
+	if (application != nullptr)
+	{
 		throw std::runtime_error("Can't create multiple instances of application");
 	}
 	application = this;
@@ -17,10 +18,11 @@ Application::~Application()
 	application = nullptr;
 }
 
-void Application::ProcessEvents(TouchEventDispatcher& touchEventDispatcher, const ts_sample_mt touch_event)
+void Application::ProcessEvents(TouchEventDispatcher &touchEventDispatcher, const ts_sample_mt touch_event)
 {
 	uint32_t nowTicks = SDL_GetTicks();
-	if (touch_event.valid && nowTicks > lastTouchEvent + TOUCH_DEBOUNCE_MS) {
+	if (touch_event.valid && nowTicks > lastTouchEvent + TOUCH_DEBOUNCE_MS)
+	{
 		touchEventDispatcher.dispatchTouchEvent(touch_event.x, touch_event.y);
 		lastTouchEvent = SDL_GetTicks();
 	}
@@ -32,13 +34,15 @@ void Application::DisableTTYCursor()
 	int tty = open(ttyDevice.c_str(), O_RDWR, 0);
 	int res = ioctl(tty, VT_UNLOCKSWITCH, 0);
 
-	if (res == -1) {
+	if (res == -1)
+	{
 		perror("VT_UNLOCKSWITCH to 0 failed, ignoring");
 	}
 
 	res = ioctl(tty, KDSETMODE, KD_GRAPHICS);
 
-	if (res == -1) {
+	if (res == -1)
+	{
 		perror("KDSETMODE to KD_GRAPHICS failed, ignoring");
 	}
 
@@ -51,22 +55,19 @@ void Application::EnableTTYCursor()
 	int tty = open(ttyDevice.c_str(), O_RDWR, 0);
 	int res = ioctl(tty, VT_UNLOCKSWITCH, 1);
 
-	if (res == -1) {
+	if (res == -1)
+	{
 		//fprintf(stderr, "VT_UNLOCKSWITCH to 1 failed, ignoring\n");
 	}
 
 	res = ioctl(tty, KDSETMODE, KD_TEXT);
 
-	if (res == -1) {
+	if (res == -1)
+	{
 		//fprintf(stderr, "KDSETMODE to KD_TEXT failed, ignoring");
 	}
 
 	close(tty);
-}
-
-void Application::setMainScene(GraphicsScene* scene)
-{
-	mainScene = scene;
 }
 
 void Application::run()
@@ -75,12 +76,14 @@ void Application::run()
 	{
 		throw TouchCPException("Failed while initializing SDL. %s", SDL_GetError());
 	}
-	if (TTF_Init() < 0) {
+	if (TTF_Init() < 0)
+	{
 		SDL_Quit();
 		throw TouchCPException("Failed while initializing TTL. %s", TTF_GetError());
 	}
 
-	if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF) == 0) {
+	if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG | IMG_INIT_TIF) == 0)
+	{
 		TTF_Quit();
 		SDL_Quit();
 		throw TouchCPException("Failed while initializing SDL IMG Library. %s", TTF_GetError());
@@ -89,11 +92,14 @@ void Application::run()
 	DisableTTYCursor();
 	SDL_ShowCursor(SDL_DISABLE);
 
-	try {
+	try
+	{
 		MainLoop();
 	}
-	catch (const std::exception& exc) {
+	catch (const std::exception &exc)
+	{
 		EnableTTYCursor();
+		IMG_Quit();
 		TTF_Quit();
 		SDL_Quit();
 		throw TouchCPException(exc.what());
@@ -101,6 +107,7 @@ void Application::run()
 
 	EnableTTYCursor();
 
+	IMG_Quit();
 	TTF_Quit();
 	SDL_Quit();
 }
@@ -111,22 +118,22 @@ void Application::MainLoop()
 
 	Window mainWindow(width, height, bgColor);
 	TouchInput touchInput(touchInputDevice,
-		std::bind(&Application::ProcessEvents, this,
-			std::ref(touchEventDispatcher), std::placeholders::_1),
-		SAMPLES, SLOTS);
+						  std::bind(&Application::ProcessEvents, this,
+									std::ref(touchEventDispatcher), std::placeholders::_1),
+						  SAMPLES, SLOTS);
 	window = mainWindow.getWindowObject();
 	renderer = mainWindow.getRenderer();
-
-	sceneManager.registerScene("MainScene", mainScene);
-
-	sceneManager.setCurrentScene("MainScene");
 
 	// Timing
 	uint32_t previousTicks = SDL_GetTicks();
 	uint32_t currentTicks;
 
-	while (running) {
-		// Timing 
+	while (running)
+	{
+		// Run UI tasks
+		taskRunner.runTasks();
+
+		// Timing
 		currentTicks = SDL_GetTicks();
 		// Touch input
 		touchInput.poll();
@@ -134,9 +141,10 @@ void Application::MainLoop()
 		if (currentTicks - previousTicks < FRAMETIME) // Avoid stressing the CPU since the SPI screen has a very poor refresh rate
 			continue;
 
-		GraphicsScene* currentScene = sceneManager.getCurrentScene();
+		GraphicsScene *currentScene = sceneManager.getCurrentScene();
 
-		if (currentScene != nullptr) {
+		if (currentScene != nullptr)
+		{
 			currentScene->draw(currentTicks);
 		}
 
@@ -152,19 +160,56 @@ bool Application::isRunning()
 	return application->running;
 }
 
-SDL_Window* Application::getWindow()
+SDL_Window *Application::getWindow()
 {
 	return application->window;
 }
 
-SDL_Renderer* Application::getRenderer()
+SDL_Renderer *Application::getRenderer()
 {
 	return application->renderer;
 }
 
-SceneManager& Application::getSceneManager()
+SceneManager *Application::getSceneManager()
 {
-	return sceneManager;
+	return &sceneManager;
+}
+
+void Application::runOnWorkerThread(Task *task)
+{
+	workerThread.runOnWorker(task);
+}
+
+void Application::runOnMainThread(Task *task)
+{
+	taskRunner.addTask(task);
+}
+
+SDL_Window *Application::getCurrentWindow()
+{
+	return application != nullptr ? application->getWindow() : nullptr;
+}
+
+SDL_Renderer *Application::getCurrentRenderer()
+{
+	return application != nullptr ? application->getRenderer() : nullptr;
+}
+
+SceneManager *Application::getCurrentSceneManager()
+{
+	return application != nullptr ? application->getSceneManager() : nullptr;
+}
+
+void Application::runOnCurrentWorkerThread(Task *task)
+{
+	if (application != nullptr)
+		application->runOnWorkerThread(task);
+}
+
+void Application::runOnCurrentMainThread(Task *task)
+{
+	if (application != nullptr)
+		application->runOnMainThread(task);
 }
 
 void Application::exit()
@@ -172,7 +217,7 @@ void Application::exit()
 	application->running = false;
 }
 
-Application* Application::getCurrent()
+Application *Application::getCurrent()
 {
 	return application;
 }

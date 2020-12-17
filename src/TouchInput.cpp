@@ -1,7 +1,6 @@
 #include "TouchInput.h"
 
-TouchInput::TouchInput(const std::string& device_name, TouchEventCallback callback, int samples, int slots) :
-	device_name(device_name), samples(samples), slots(slots), event_callback(callback)
+TouchInput::TouchInput(const std::string &device_name, TouchEventCallback callback, int samples, int slots) : device_name(device_name), samples(samples), slots(slots), event_callback(callback)
 {
 	TS_SETENV(TSLIB_CALIBFILE);
 	TS_SETENV(TSLIB_CONFFILE);
@@ -14,8 +13,9 @@ TouchInput::TouchInput(const std::string& device_name, TouchEventCallback callba
 		throw TouchInputException("Couldn't initialize ts inputs.");
 	}
 
-	samp_mt = new ts_sample_mt * [samples];
-	for (int i = 0; i < samples; i++) {
+	samp_mt = new ts_sample_mt *[samples];
+	for (int i = 0; i < samples; i++)
+	{
 		samp_mt[i] = new ts_sample_mt[slots];
 	}
 	//samp_mt = std::vector<std::vector<ts_sample_mt>>(samples, std::vector<ts_sample_mt>(slots));
@@ -23,7 +23,8 @@ TouchInput::TouchInput(const std::string& device_name, TouchEventCallback callba
 
 TouchInput::~TouchInput()
 {
-	for (int i = 0; i < samples; i++) {
+	for (int i = 0; i < samples; i++)
+	{
 		delete[] samp_mt[i];
 	}
 	delete[] samp_mt;

@@ -3,13 +3,13 @@
 WavefunctionAnimation::WavefunctionAnimation()
 	: renderer(Application::getCurrent()->getRenderer())
 {
-	for (int i = 0; i < FRAMES; i++) {
-		points[i].resize(WIDTH);
-		const double scale = 1 - 2 / (double)FRAMES * i;
-		for (int n = 0; n < WIDTH; n++) {
-			points[i][n] = { n, (int)std::round((sinF(n) - BASE_Y) * scale + BASE_Y) };
-		}
-	}
+	rebuild();
+}
+
+void WavefunctionAnimation::setRevolutionTime(int time)
+{
+	REVOLUTION_TIME = time;
+	FRAMES = REVOLUTION_TIME / 80;
 }
 
 void WavefunctionAnimation::draw(uint32_t time)
@@ -41,6 +41,19 @@ int WavefunctionAnimation::getWidth() const
 int WavefunctionAnimation::getHeight() const
 {
 	return HEIGHT;
+}
+
+void WavefunctionAnimation::rebuild()
+{
+	points.clear();
+	points.resize(FRAMES);
+	for (int i = 0; i < FRAMES; i++) {
+		points[i].resize(WIDTH);
+		const double scale = 1 - 2 / (double)FRAMES * i;
+		for (int n = 0; n < WIDTH; n++) {
+			points[i][n] = { n, (int)std::round((sinF(n) - BASE_Y) * scale + BASE_Y) };
+		}
+	}
 }
 
 int WavefunctionAnimation::sinF(double x)

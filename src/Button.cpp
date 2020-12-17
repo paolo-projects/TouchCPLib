@@ -1,54 +1,113 @@
 #include "Button.h"
 
-Button::Button(const char* text, int x, int y, int width, int height, SDL_Color fillColor, SDL_Color textColor, TTF_Font* font) :
-	renderer(Application::getCurrent()->getRenderer()), x(x), y(y), width(width), height(height), fillColor(fillColor), textColor(textColor)
+Button::Button()
 {
-	rectangle = { x, y, width, height };
-
-	textSurface = TTF_RenderText_Solid(font, text, textColor);
-
-	if (!textSurface) {
-		throw TTFFontException("Couldn't render text");
-	}
-
-	textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-	int textW = textSurface->w;
-	int textH = textSurface->h;
-
-	int marginVert = (height - textH) / 2;
-	int marginHor = (width - textW) / 2;
-	textPosition = { x + marginHor, y + marginVert, textW, textH };
+	renderer = Application::getCurrent()->getRenderer();
 }
 
 Button::~Button()
 {
-	SDL_DestroyTexture(textTexture);
-	SDL_FreeSurface(textSurface);
+	if (textTexture != nullptr)
+		SDL_DestroyTexture(textTexture);
+
+	if (textSurface != nullptr)
+		SDL_FreeSurface(textSurface);
+}
+
+void Button::setText(const std::string& text)
+{
+	this->text = text;
+	build();
+}
+
+void Button::setGeometry(Rect r)
+{
+	geometry = r;
+	build();
+}
+
+void Button::setFillColor(const Color fillColor)
+{
+	this->fillColor = fillColor;
+}
+
+void Button::setTextColor(const Color textColor)
+{
+	this->textColor = textColor;
+	build();
+}
+
+void Button::setFontPath(const std::string& fontPath)
+{
+	this->fontPath = fontPath;
+	font.reset(new Font(fontPath, fontSize));
+	build();
+}
+
+void Button::setFontSize(int fontSize)
+{
+	this->fontSize = fontSize;
+	font.reset(new Font(fontPath, fontSize));
+	build();
 }
 
 void Button::draw(uint32_t time)
 {
 	SDL_SetRenderDrawColor(renderer, fillColor.r, fillColor.g, fillColor.b, fillColor.a);
-	SDL_RenderFillRect(renderer, &rectangle);
-	SDL_RenderCopy(renderer, textTexture, &textSurface->clip_rect, &textPosition);
+	SDL_Rect sdlGeom = geometry;
+	SDL_RenderFillRect(renderer, &sdlGeom);
+	if (textTexture != nullptr)
+	{
+		SDL_RenderCopy(renderer, textTexture, NULL, &textPosition);
+	}
 }
 
 int Button::getX() const
 {
-	return x;
+	return geometry.x;
 }
 
 int Button::getY() const
 {
-	return y;
+	return geometry.y;
 }
 
 int Button::getWidth() const
 {
-	return width;
+	return geometry.width;
 }
 
 int Button::getHeight() const
 {
-	return height;
+	return geometry.height;
+}
+
+void Button::build()
+{
+	if (font != nullptr) {
+		if (textSurface != nullptr)
+		{
+			SDL_FreeSurface(textSurface);
+			textSurface = nullptr;
+		}
+		if (textTexture != nullptr)
+		{
+			SDL_DestroyTexture(textTexture);
+			textTexture = nullptr;
+		}
+
+		textSurface = TTF_RenderText_Solid(*font, text.c_str(), textColor);
+
+		if (!textSurface) {
+			throw TTFFontException("Couldn't render text");
+		}
+
+		textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+		int textW = textSurface->w;
+		int textH = textSurface->h;
+
+		int marginVert = (geometry.height - textH) / 2;
+		int marginHor = (geometry.width - textW) / 2;
+		textPosition = { geometry.x + marginHor, geometry.y + marginVert, textW, textH };
+	}
 }
