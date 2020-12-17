@@ -41,4 +41,8 @@ make
 sudo make install
 ```
 
-The library will be installed in `/usr/local` path.
+The library will be installed in `/usr/local` path, by default.
+
+# Documentation
+
+The Doxygen generated documentation is available [here](https://paolo-projects.github.io/TouchCPLib)
