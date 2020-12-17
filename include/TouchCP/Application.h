@@ -124,6 +124,7 @@ private:
 	SDL_Window *window;
 	SDL_Renderer *renderer;
 	uint32_t lastTouchEvent;
+	std::unique_ptr<TouchEventDispatcher> touchEventDispatcher;
 	std::unique_ptr<Window> mainWindow;
 	std::unique_ptr<TouchInput> touchInput;
 	// This order is important

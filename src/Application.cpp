@@ -31,6 +31,16 @@ Application::Application(int width, int height, SDL_Color bgColor, std::string t
 
 	DisableTTYCursor();
 	SDL_ShowCursor(SDL_DISABLE);
+
+	touchEventDispatcher = std::unique_ptr<TouchEventDispatcher>(new TouchEventDispatcher(sceneManager));
+
+	mainWindow = std::unique_ptr<Window>(new Window(width, height, bgColor));
+	touchInput = std::unique_ptr<TouchInput>(new TouchInput(touchInputDevice,
+															std::bind(&Application::ProcessEvents, this,
+																	  std::ref(*touchEventDispatcher), std::placeholders::_1),
+															SAMPLES, SLOTS));
+	window = mainWindow->getWindowObject();
+	renderer = mainWindow->getRenderer();
 }
 
 Application::~Application()
@@ -111,16 +121,6 @@ void Application::run()
 
 void Application::MainLoop()
 {
-	TouchEventDispatcher touchEventDispatcher(sceneManager);
-
-	Window mainWindow(width, height, bgColor);
-	TouchInput touchInput(touchInputDevice,
-						  std::bind(&Application::ProcessEvents, this,
-									std::ref(touchEventDispatcher), std::placeholders::_1),
-						  SAMPLES, SLOTS);
-	window = mainWindow.getWindowObject();
-	renderer = mainWindow.getRenderer();
-
 	// Timing
 	uint32_t previousTicks = SDL_GetTicks();
 	uint32_t currentTicks;
@@ -133,7 +133,7 @@ void Application::MainLoop()
 		// Timing
 		currentTicks = SDL_GetTicks();
 		// Touch input
-		touchInput.poll();
+		touchInput->poll();
 
 		if (currentTicks - previousTicks < FRAMETIME) // Avoid stressing the CPU since the SPI screen has a very poor refresh rate
 			continue;
@@ -148,7 +148,7 @@ void Application::MainLoop()
 		// Timing and render
 		previousTicks = currentTicks;
 		SDL_RenderPresent(renderer);
-		mainWindow.update();
+		mainWindow->update();
 	}
 }
 
