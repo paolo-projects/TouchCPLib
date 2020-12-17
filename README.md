@@ -33,7 +33,7 @@ To compile the application you need the following libraries:
 
 Install them, then:
 
-bash```
+```bash
 mkdir build
 cd build
 cmake ..
