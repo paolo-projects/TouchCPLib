@@ -45,6 +45,10 @@ Application::Application(int width, int height, SDL_Color bgColor, std::string t
 
 Application::~Application()
 {
+	touchInput.reset();
+	mainWindow.reset();
+	touchEventDispatcher.reset();
+
 	EnableTTYCursor();
 
 	IMG_Quit();
